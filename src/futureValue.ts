@@ -118,7 +118,7 @@ document
       result.endingBalances[result.endingBalances.length - 1];
 
     document.getElementById("principal")!.textContent = (
-      totalInterestEarned - totalBalance
+      totalBalance - totalInterestEarned
     ).toFixed(2);
     document.getElementById("earning")!.textContent =
       totalInterestEarned.toFixed(2);
