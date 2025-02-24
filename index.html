@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.6/daisyui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Kirin</title>
+    <script type="module" crossorigin src="/assets/index-Cw0mr7A4.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="navbar bg-base-100 shadow-sm">
+        <a class="btn btn-ghost text-xl">Kirin</a>
+      </div>
+      <div role="tablist" class="tabs tabs-lift">
+        <input
+          type="radio"
+          name="calculator"
+          role="tab"
+          class="tab"
+          aria-label="Future Value Calulator"
+          checked="checked"
+        />
+        <div class="tab-content bg-base-100 border-base-300 p-6">
+          <!-- <div class="grid grid-cols-3"> -->
+          <!-- <div></div> -->
+          <div class="flex justify-center">
+            <div>
+              <fieldset class="fieldset">
+                <legend class="fieldset-legend">Initial Investment</legend>
+                <input
+                  id="fv-present-value"
+                  type="text"
+                  placeholder="0"
+                  class="input"
+                />
+              </fieldset>
+              <fieldset class="fieldset">
+                <legend class="fieldset-legend">Monthly Contribution</legend>
+                <input
+                  id="fv-monthly-contribution"
+                  type="text"
+                  placeholder="0"
+                  class="input"
+                />
+              </fieldset>
+              <fieldset class="fieldset">
+                <legend class="fieldset-legend">Interest Rate</legend>
+                <div class="grid grid-cols-2">
+                  <div>
+                    <input
+                      type="radio"
+                      name="fv-interest-rate-unit"
+                      class="radio radio-neutral"
+                      value="yearly"
+                      id="interest-rate-yearly"
+                      checked
+                    />
+                    <label for="interest-rate-yearly">Yearly</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="fv-interest-rate-unit"
+                      class="radio radio-neutral"
+                      value="monthly"
+                      id="interest-rate-monthly"
+                    />
+                    <label for="interest-rate-monthly">Monthly</label>
+                  </div>
+                </div>
+                <div>
+                  <input
+                    id="fv-interest-rate"
+                    type="text"
+                    placeholder="%"
+                    class="input"
+                  />
+                </div>
+              </fieldset>
+              <fieldset class="fieldset">
+                <legend class="fieldset-legend">Time Period</legend>
+                <div class="grid grid-cols-2">
+                  <div>
+                    <input
+                      type="radio"
+                      name="fv-time-period-unit"
+                      class="radio radio-neutral"
+                      checked="checked"
+                      value="year"
+                    />
+                    <label for="year">Year</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="fv-time-period-unit"
+                      class="radio radio-neutral"
+                      value="month"
+                    />
+                    <label for="month">Month</label>
+                  </div>
+                </div>
+                <div>
+                  <input
+                    id="fv-time-period"
+                    type="text"
+                    placeholder="0"
+                    class="input"
+                  />
+                </div>
+              </fieldset>
+              <fieldset class="fieldset">
+                <legend class="fieldset-legend">Compounding Frequency</legend>
+                <select id="fv-compounding-frequency" class="select">
+                  <option disabled selected>Pick a frequency</option>
+                  <option value="yearly">Yearly Compound Interest</option>
+                  <option value="semiyear">
+                    Semi-Yearly Compound Interest
+                  </option>
+                  <option value="quarterly">Quarterly Compound Interest</option>
+                  <option value="monthly">Monthly Compound Interest</option>
+                  <option value="daily">Daily Compound Interest</option>
+                </select>
+              </fieldset>
+              <button
+                id="futureValueCalculate"
+                class="btn btn-neutral my-4 w-full"
+              >
+                Calulate
+              </button>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div>
+              <div class="divider divider-primary"></div>
+              <div class="stats shadow">
+                <div class="grid lg:grid-cols-3 grid-cols-1">
+                  <div class="stat">
+                    <div class="stat-figure text-primary">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        class="inline-block h-8 w-8 stroke-current"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="stat-title">總本金</div>
+                    <div id="principal" class="stat-value text-primary">0</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-figure text-secondary">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        class="inline-block h-8 w-8 stroke-current"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13 10V3L4 14h7v7l9-11h-7z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="stat-title">總收益</div>
+                    <div id="earning" class="stat-value text-secondary">0</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-figure text-success">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        class="inline-block h-8 w-8 stroke-current"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="stat-title">總金額</div>
+                    <div id="total" class="stat-value text-success">0</div>
+                  </div>
+                </div>
+              </div>
+              <div class="divider divider-primary"></div>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <canvas id="futureValueChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
